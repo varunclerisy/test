@@ -1,466 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dev Testing Page</title>
-  <style>
-    .form-control {
-      width: 250px;
-      display: inline-flex;
-      flex-direction: column;
-      margin-right: 15px;
-    }
-
-    .form-control label {
-      font-size: 15px;
-      margin-bottom: 2px;
-      color: #444444;
-    }
-
-    .form-control input {
-      border: 1px solid grey;
-      height: 30px;
-      padding: 0 10px;
-      font-size: 14px;
-    }
-
-    .form-control input:focus,
-    .form-control select:focus {
-      outline: none;
-    }
-
-    .form-control select {
-      border: 1px solid grey;
-      height: 30px;
-      padding: 0 10px;
-      font-size: 14px;
-      background: white;
-    }
-
-    .pay-now {
-      font-size: 14px;
-      color: white;
-      border: none;
-      height: 30px;
-      min-width: 120px;
-      cursor: pointer;
-      background: #545454;
-      transition: 0.3s all ease;
-    }
-
-    .form-group {
-      padding: 20px 30px;
-      display: flex;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 15px 10px;
-    }
-
-    body {
-      font-family: arial;
-    }
-
-    iframe {
-      border: none;
-    }
-
-    .popup-outer {
-      padding: 0;
-    }
-
-    .payment-modal {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      display: none;
-    }
-
-    .payment-modal.active {
-      display: block;
-    }
-
-    iframe {
-      border: none;
-      height: 530px;
-      width: 100%;
-      border-radius: 4px;
-    }
-
-    .payment-modal .popup-outer {
-      width: 680px;
-      max-width: unset;
-      position: absolute;
-      top: 15%;
-      padding: 18px 30px 20px 30px;
-      background: #ffffff;
-    }
-
-    body {
-      margin: 0;
-    }
-
-    .datpayment-form {
-      background: #fff;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    .close {
-      position: absolute;
-      right: -14px;
-      top: -14px;
-      opacity: 11;
-      background: #f7f7f7;
-      width: 20px;
-      height: 20px;
-      padding: 7px;
-      border-radius: 50%;
-      border: 1px solid #cccccc;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      opacity: 1;
-    }
-
-    .close:before,
-    .close:after {
-      position: absolute;
-      left: 16px;
-      content: ' ';
-      height: 17px;
-      width: 2px;
-      background-color: #b1b1b1;
-      top: 9px;
-    }
-
-    .close:before {
-      transform: rotate(45deg);
-    }
-
-    .close:after {
-      transform: rotate(-45deg);
-    }
-
-    .pay-now:hover {
-      background: #3d3d3d;
-    }
-
-    #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: #0000000d;
-      font-size: 26px;
-      color: #545454;
-    }
-
-    @media only screen and (max-width: 767px) {
-      .payment-modal .popup-outer {
-        width: 90% !important;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Testing Page</title>
+    <style>
+      .form-control {
+        width: 250px;
+        display: inline-flex;
+        flex-direction: column;
+        margin-right: 15px;
       }
-    }
 
-    @media only screen and (max-width: 640px) {
+      .form-control label {
+        font-size: 15px;
+        margin-bottom: 2px;
+        color: #444444;
+      }
+
+      .form-control input {
+        border: 1px solid grey;
+        height: 30px;
+        padding: 0 10px;
+        font-size: 14px;
+      }
+
+      .form-control input:focus,
+      .form-control select:focus {
+        outline: none;
+      }
+
+      .form-control select {
+        border: 1px solid grey;
+        height: 30px;
+        padding: 0 10px;
+        font-size: 14px;
+        background: white;
+      }
+
+      .pay-now {
+        font-size: 14px;
+        color: white;
+        border: none;
+        height: 30px;
+        min-width: 120px;
+        cursor: pointer;
+        background: #545454;
+        transition: 0.3s all ease;
+      }
+
+      .form-group {
+        padding: 20px 30px;
+        display: flex;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 15px 10px;
+      }
+
+      body {
+        font-family: arial;
+      }
+
+      iframe {
+        border: none;
+      }
+
+      .popup-outer {
+        padding: 0;
+      }
+
+      .payment-modal {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
+      }
+
+      .payment-modal.active {
+        display: block;
+      }
+
+      iframe {
+        border: none;
+        height: 530px;
+        width: 100%;
+        border-radius: 4px;
+      }
+
+      .payment-modal .popup-outer {
+        width: 680px;
+        max-width: unset;
+        position: absolute;
+        top: 15%;
+        padding: 18px 30px 20px 30px;
+        background: #ffffff;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .datpayment-form {
+        background: #fff;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
 
       .close {
-        width: 16px;
-        height: 16px;
+        position: absolute;
         right: -14px;
         top: -14px;
+        opacity: 11;
+        background: #f7f7f7;
+        width: 20px;
+        height: 20px;
+        padding: 7px;
+        border-radius: 50%;
+        border: 1px solid #cccccc;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        opacity: 1;
       }
 
       .close:before,
       .close:after {
-        height: 15px;
-        left: 14px;
-        top: 8px;
-      }
-    }
-
-    @media only screen and (max-width: 450px) {
-      .pay-now {
-        min-width: 130px;
-        margin-top: 5px;
+        position: absolute;
+        left: 16px;
+        content: " ";
+        height: 17px;
+        width: 2px;
+        background-color: #b1b1b1;
+        top: 9px;
       }
 
-      .form-control {
-        width: 100%;
+      .close:before {
+        transform: rotate(45deg);
       }
 
-      .form-group {
-        gap: 15px 10px;
+      .close:after {
+        transform: rotate(-45deg);
       }
-    }
 
-    @media only screen and (max-width: 360px) {
-      iframe {
-        height: 409px;
+      .pay-now:hover {
+        background: #3d3d3d;
       }
-    }
 
-    h1#txn_response {
-      word-break: break-all;
-    }
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: #ffffffe6;
+        font-size: 26px;
+        color: #545454;
+      }
 
-  </style>
-  <script>
-    document.getElementById('btoken').value = localStorage.getItem('btoken') ? localStorage.getItem('btoken') : 'wEfTAdo9V4XEVVzOoWBStARiAkiO' 
-  </script>
-</head>
+      @media only screen and (max-width: 767px) {
+        .payment-modal .popup-outer {
+          width: 90% !important;
+        }
+      }
 
-<body>
-  <center>
-    <h3>Property Management System - Demo</h3>
-  </center>
-  <div id="loader">Loading...</div>
-  <div class="form-control">
-    <label>OAuth Bearer Token</label>
-    <input name="btoken" type="text" id="btoken"
-      value="" onblur="localStorage.setItem('btoken', this.value);">
-  </div>
-  <form id="my-payment-form">
+      @media only screen and (max-width: 640px) {
+        .close {
+          width: 16px;
+          height: 16px;
+          right: -14px;
+          top: -14px;
+        }
+
+        .close:before,
+        .close:after {
+          height: 15px;
+          left: 14px;
+          top: 8px;
+        }
+      }
+
+      @media only screen and (max-width: 450px) {
+        .pay-now {
+          min-width: 130px;
+          margin-top: 5px;
+        }
+
+        .form-control {
+          width: 100%;
+        }
+
+        .form-group {
+          gap: 15px 10px;
+        }
+      }
+
+      @media only screen and (max-width: 360px) {
+        iframe {
+          height: 409px;
+        }
+      }
+
+      h1#txn_response {
+        word-break: break-all;
+      }
+    </style>
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        document.getElementById("btoken").value = localStorage.getItem("btoken")
+          ? localStorage.getItem("btoken")
+          : "4gRkIAt36vWJzc8KNiQjXr0hXmNS";
+      });
+    </script>
+  </head>
+
+  <body>
+    <center>
+      <h3>Property Management System - Demo</h3>
+    </center>
+    <div id="loader">Loading...</div>
     <div class="form-group">
-      <div class="form-control">
-        <label>Gateway</label>
-        <select id="gatewayName">
-          <option value="00000000-61a0-a20a-fde5-c27fddc48002">Freedompay</option>
-          <option value="00000000-61a0-a20a-fde5-c27fddc4800e">Planet Payment (3C)</option>
-          <option value="00000000-61a0-a20a-fde5-c27fddc45a76">Fusebox</option>
-          <option value="00000000-61a0-a207-fde5-c27fddc4800a">Shift4</option>
-          <option value="00000000-61a0-a209-fde5-c27fddc4800d">Heartland</option>
-          <option value="00000000-61a0-a20a-fde5-c27fddc48001">Adyen</option>
-          <option value="00000000-61a0-a20a-fde5-c27fddc4800f">Stripe</option>
-          <option value="00000000-61a0-a20a-fde5-c27fddc48035">Authorize.NET</option>
-        </select>
+      <div class="form-control" style="width: 100%">
+        <label>OAuth Bearer Token</label>
+        <input
+          name="btoken"
+          type="text"
+          id="btoken"
+          value=""
+          onblur="localStorage.setItem('btoken', this.value);"
+        />
       </div>
-      <div class="form-control">
-        <label>Consumer Authentication</label>
-        <select id="consumerAuthentication" onchange="">
-          <option value="false">No</option>
-          <option value="true">Yes</option>
-        </select>
-      </div>
-      <div class="form-control">
-        <label>Redirect URL</label>
-        <input name="redirectUrl" type="text" id="redirectUrl"
-          value="https://varunclerisy.github.io/requestbin/">
-      </div>
-      <div class=" form-control">
-        <label>Card Holder Name</label>
-        <input name="name" type="text" id="cardHolderName" value="John Doe">
-      </div>
-      <div class="form-control">
-        <label>Address</label>
-        <input name="address" type="text" id="address" value="89 Main Street">
-      </div>
-      <div class="form-control">
-        <label>City</label>
-        <input name="city" type="text" id="city" value="Mohali">
-      </div>
-      <div class="form-control">
-        <label>State</label>
-        <input name="state" type="text" id="state" value="PB">
-      </div>
-      <div class="form-control">
-        <label>Postal Code</label>
-        <input name="postalCode" type="text" id="postal_code" value="89000">
-      </div>
-      <div class="form-control">
-        <label>Auth Only</label>
-        <select name="isAuthOnly">
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </div>
-      <div class="form-control">
-        <label>Amount</label>
-        <input name="amount" type="text" id="amount" value="1">
-      </div>
-      <div class="form-control">
-        <label>Currency</label>
-        <select id="currency">
-          <option value="USD">USD</option>
-          <option value="CAD">CAD</option>
-          <option value="EUR">EUR</option>
-          <option value="GBP">GBP</option>
-          <option value="INR">INR</option>
-        </select>
-      </div>
-      <button class="pay-now">Pay Now</button>
     </div>
-  </form>
-  <div id="payment-modal-id" class="payment-modal">
-    <div class="datpayment-form popup-outer">
-      <div class="close"></div>
-      <iframe width="100%" height="650px" type="text/html" name="myIframe" id="myIframe" data="" allowfullscreen
-        allow="payment"></iframe>
-      <!-- </form> -->
+    <form id="my-payment-form">
+      <div class="form-group">
+        <div class="form-control">
+          <label>Gateway</label>
+          <select id="gatewayName">
+            <option value="00000000-61a0-a20a-fde5-c27fddc48002">
+              Freedompay
+            </option>
+            <option value="00000000-61a0-a20a-fde5-c27fddc4800e">
+              Planet Payment (3C)
+            </option>
+            <option value="00000000-61a0-a20a-fde5-c27fddc45a76">
+              Fusebox
+            </option>
+            <option value="00000000-61a0-a207-fde5-c27fddc4800a">Shift4</option>
+            <option value="00000000-61a0-a209-fde5-c27fddc4800d">
+              Heartland
+            </option>
+            <option value="00000000-61a0-a20a-fde5-c27fddc48001">Adyen</option>
+            <option value="00000000-61a0-a20a-fde5-c27fddc4800f">Stripe</option>
+            <option value="00000000-61a0-a20a-fde5-c27fddc48035">
+              Authorize.NET
+            </option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label>Consumer Authentication</label>
+          <select id="consumerAuthentication" onchange="">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label>Redirect URL</label>
+          <input
+            name="redirectUrl"
+            type="text"
+            id="redirectUrl"
+            value="https://varunclerisy.github.io/requestbin/"
+          />
+        </div>
+        <div class="form-control">
+          <label>Card Holder Name</label>
+          <input name="name" type="text" id="cardHolderName" value="John Doe" />
+        </div>
+        <div class="form-control">
+          <label>Address</label>
+          <input
+            name="address"
+            type="text"
+            id="address"
+            value="89 Main Street"
+          />
+        </div>
+        <div class="form-control">
+          <label>City</label>
+          <input name="city" type="text" id="city" value="Mohali" />
+        </div>
+        <div class="form-control">
+          <label>State</label>
+          <input name="state" type="text" id="state" value="PB" />
+        </div>
+        <div class="form-control">
+          <label>Postal Code</label>
+          <input name="postalCode" type="text" id="postal_code" value="89000" />
+        </div>
+        <div class="form-control">
+          <label>Auth Only</label>
+          <select name="isAuthOnly">
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <label>Amount</label>
+          <input name="amount" type="text" id="amount" value="1" />
+        </div>
+        <div class="form-control">
+          <label>Currency</label>
+          <select id="currency">
+            <option value="USD">USD</option>
+            <option value="CAD">CAD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="INR">INR</option>
+          </select>
+        </div>
+        <button class="pay-now">Pay Now</button>
+      </div>
+    </form>
+    <div id="payment-modal-id" class="payment-modal">
+      <div class="datpayment-form popup-outer">
+        <div class="close"></div>
+        <iframe
+          width="100%"
+          height="650px"
+          type="text/html"
+          name="myIframe"
+          id="myIframe"
+          data=""
+          allowfullscreen
+          allow="payment"
+        ></iframe>
+        <!-- </form> -->
+      </div>
     </div>
-  </div>
-  <h1 id="txn_response">Response</h1>
-</body>
-<script>
-//   const apiUrlEndPoint = "http://localhost:4000/api/v1/"; // Local
-  // const apiUrlEndPoint = "https://payments.stayntouchpay.com/v1/"; // Production
-  const apiUrlEndPoint = "https://payments.dev.stayntouchpay.com/v1/"; // Dev
+    <h1 id="txn_response">Response</h1>
+  </body>
+  <script>
+    //   const apiUrlEndPoint = "http://localhost:4000/api/v1/"; // Local
+    // const apiUrlEndPoint = "https://payments.stayntouchpay.com/v1/"; // Production
+    const apiUrlEndPoint = "https://payments.dev.stayntouchpay.com/v1/"; // Dev
 
-  window.addEventListener('message', function messageListener(event) {
-    const eventMessage = event.data?.message;
-    if (eventMessage === 'submit') {
-      document.getElementById('txn_response').innerHTML = JSON.stringify(event.data.value) ? JSON.stringify(event.data.value) : 'Response';
-    }
-  });
-
-
-  document.getElementById('my-payment-form').addEventListener('submit', function (e) {
-    document.getElementById('loader').style.display = "flex";
-    e.preventDefault();
-    e.stopPropagation();
-    let formData = new FormData(this);
-    let parsedData = {};
-    for (let name of formData) {
-      if (typeof (parsedData[name[0]]) == "undefined") {
-        let tempdata = formData.getAll(name[0]);
-        if (tempdata.length > 1) {
-          parsedData[name[0]] = tempdata;
-        } else {
-          parsedData[name[0]] = tempdata[0];
-        }
+    window.addEventListener("message", function messageListener(event) {
+      const eventMessage = event.data?.message;
+      if (eventMessage === "submit") {
+        document.getElementById("txn_response").innerHTML = JSON.stringify(
+          event.data.value
+        )
+          ? JSON.stringify(event.data.value)
+          : "Response";
       }
-    }
+    });
 
-    parsedData.isAuthOnly = parsedData.isAuthOnly === "true";
-    parsedData.amount = Number(parsedData.amount);
-    // parsedData.taxTotal = Number((parsedData.amount * 0.18).toFixed(2));
-    parsedData.customer = {
-      customerReference: '00001009',
-      name: parsedData.name,
-      city: parsedData.city,
-      state: parsedData.state,
-      address: parsedData.address,
-      postalCode: parsedData.postalCode,
-      country: 'IND'
-    };
-
-    parsedData.items = [
-      {
-        "description": "Tea",
-        "unitPrice": 150,
-        "quantity": 1,
-        "taxAmount": 4,
-        "isTaxIncluded": true,
-        "discountAmount": 0,
-        "isDiscounted": false,
-        "unitOfMeasure": "PK",
-        "saleCode": "S",
-        "productCode": "B",
-        "commodityCode": "A",
-      }
-    ];
-
-    parsedData.lodging = {
-      "expectedDuration": 2,
-      "folioNumber": 1255,
-      "checkinDate": "2022-04-06T10:52:47.347Z",
-      "checkoutDate": "2022-04-08T10:52:47.347Z",
-      "roomRate": 30,
-      "roomTax": 0,
-      "extraChargeTotal": 0,
-      "extraChargeTypes": "O",
-      "noShow": false
-    };
-
-    delete parsedData.name;
-    delete parsedData.city;
-    delete parsedData.state;
-    delete parsedData.address;
-    delete parsedData.postalCode;
-    parsedData.sourceId = 121;
-    parsedData.sourceType = 'Reservation';
-    parsedData.industryType = 'LODGING';
-    parsedData.currency = document.getElementById('currency')?.value;
-    parsedData.referenceNumber = "1700021";
-    parsedData.taxIndicator = '1';
-    parsedData.consumerAuthentication = eval(document.getElementById('consumerAuthentication')?.value);
-
-    payNow(parsedData);
-
-  });
-
-  document.querySelectorAll('.close').forEach(el => el.addEventListener('click', event => {
-    document.getElementById("payment-modal-id").style.display = "none";
-  }));
-
-  const token = new URLSearchParams(window.location.search).has('token') ? new URLSearchParams(window.location.search).get('token') : 'CNJOAhTiQDuAR3NEvr1gtroL5HYo';
-
-  function setRequestHeaders(xhttp) {
-    xhttp.setRequestHeader('X-MERCHANT-ID', '00000000-61a0-a2be-2990-f501fe9db655');
-    xhttp.setRequestHeader('X-PROPERTY-ID', document.getElementById('gatewayName')?.value);
-    xhttp.setRequestHeader('accept', 'application/json');
-    xhttp.setRequestHeader('Content-Type', 'application/json');
-    xhttp.setRequestHeader('Authorization', 'Bearer ' + token);
-  }
-
-  function payNow(jsonData) {
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.open("GET", apiUrlEndPoint + 'reference-number');
-    setRequestHeaders(xhttp)
-
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4) {
-        if(this.status == 200) {
-          let res = JSON.parse(this.responseText);
-          if (res.data) {
-            jsonData.referenceNumber = res.data;
-
-            xhttp.open("POST", apiUrlEndPoint + 'iframe/url', true);
-            setRequestHeaders(xhttp);
-            xhttp.onreadystatechange = function () {
-              if (this.readyState == 4 && this.status == 200) {
-                let res = JSON.parse(this.responseText);
-                if (res.data) {
-                  let url = res.data.split("/v1/");
-                  url = apiUrlEndPoint + url[1];
-                  if (jsonData.redirectUrl) {
-                    window.location.href = url;
-                  } else {
-                    const node = document.getElementById("myIframe").src = url;
-                    document.getElementById("payment-modal-id").style.display = "flex";
-                  }
-                } else {
-                  alert("Error occurred.");
-                }
-                document.getElementById('loader').style.display = "none";
-              }
-            };
-            xhttp.send(JSON.stringify(jsonData));
+    document
+      .getElementById("my-payment-form")
+      .addEventListener("submit", function (e) {
+        document.getElementById("loader").style.display = "flex";
+        e.preventDefault();
+        e.stopPropagation();
+        let formData = new FormData(this);
+        let parsedData = {};
+        for (let name of formData) {
+          if (typeof parsedData[name[0]] == "undefined") {
+            let tempdata = formData.getAll(name[0]);
+            if (tempdata.length > 1) {
+              parsedData[name[0]] = tempdata;
+            } else {
+              parsedData[name[0]] = tempdata[0];
+            }
           }
-        } else {
-          document.getElementById('loader').style.display = "none";
-          alert('Pass token in query param: '+ token);
         }
-      }
-    };
-    xhttp.send();
-  }
 
+        parsedData.isAuthOnly = parsedData.isAuthOnly === "true";
+        parsedData.amount = Number(parsedData.amount);
+        // parsedData.taxTotal = Number((parsedData.amount * 0.18).toFixed(2));
+        parsedData.customer = {
+          customerReference: "00001009",
+          name: parsedData.name,
+          city: parsedData.city,
+          state: parsedData.state,
+          address: parsedData.address,
+          postalCode: parsedData.postalCode,
+          country: "IND",
+        };
 
-</script>
+        parsedData.items = [
+          {
+            description: "Tea",
+            unitPrice: 150,
+            quantity: 1,
+            taxAmount: 4,
+            isTaxIncluded: true,
+            discountAmount: 0,
+            isDiscounted: false,
+            unitOfMeasure: "PK",
+            saleCode: "S",
+            productCode: "B",
+            commodityCode: "A",
+          },
+        ];
 
+        parsedData.lodging = {
+          expectedDuration: 2,
+          folioNumber: 1255,
+          checkinDate: "2022-04-06T10:52:47.347Z",
+          checkoutDate: "2022-04-08T10:52:47.347Z",
+          roomRate: 30,
+          roomTax: 0,
+          extraChargeTotal: 0,
+          extraChargeTypes: "O",
+          noShow: false,
+        };
+
+        delete parsedData.name;
+        delete parsedData.city;
+        delete parsedData.state;
+        delete parsedData.address;
+        delete parsedData.postalCode;
+        parsedData.sourceId = 121;
+        parsedData.sourceType = "Reservation";
+        parsedData.industryType = "LODGING";
+        parsedData.currency = document.getElementById("currency")?.value;
+        parsedData.referenceNumber = "1700021";
+        parsedData.taxIndicator = "1";
+        parsedData.consumerAuthentication = eval(
+          document.getElementById("consumerAuthentication")?.value
+        );
+
+        payNow(parsedData);
+      });
+
+    document.querySelectorAll(".close").forEach((el) =>
+      el.addEventListener("click", (event) => {
+        document.getElementById("payment-modal-id").style.display = "none";
+      })
+    );
+
+    function setRequestHeaders(xhttp) {
+      console.log(document.getElementById("btoken"));
+      const token = new URLSearchParams(window.location.search).has("token")
+        ? new URLSearchParams(window.location.search).get("token")
+        : document.getElementById("btoken").value;
+      xhttp.setRequestHeader(
+        "X-MERCHANT-ID",
+        "00000000-61a0-a2be-2990-f501fe9db655"
+      );
+      xhttp.setRequestHeader(
+        "X-PROPERTY-ID",
+        document.getElementById("gatewayName")?.value
+      );
+      xhttp.setRequestHeader("accept", "application/json");
+      xhttp.setRequestHeader("Content-Type", "application/json");
+      xhttp.setRequestHeader("Authorization", "Bearer " + token);
+    }
+
+    function payNow(jsonData) {
+      let xhttp = new XMLHttpRequest();
+
+      xhttp.open("GET", apiUrlEndPoint + "reference-number");
+      setRequestHeaders(xhttp);
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            let res = JSON.parse(this.responseText);
+            if (res.data) {
+              jsonData.referenceNumber = res.data;
+
+              xhttp.open("POST", apiUrlEndPoint + "iframe/url", true);
+              setRequestHeaders(xhttp);
+              xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                  let res = JSON.parse(this.responseText);
+                  if (res.data) {
+                    let url = res.data.split("/v1/");
+                    url = apiUrlEndPoint + url[1];
+                    if (jsonData.redirectUrl) {
+                      window.location.href = url;
+                    } else {
+                      const node = (document.getElementById("myIframe").src =
+                        url);
+                      document.getElementById(
+                        "payment-modal-id"
+                      ).style.display = "flex";
+                    }
+                  } else {
+                    alert("Error occurred.");
+                  }
+                  document.getElementById("loader").style.display = "none";
+                } else {
+                  document.getElementById("loader").style.display = "none";
+                }
+              };
+              xhttp.send(JSON.stringify(jsonData));
+            }
+          } else {
+            document.getElementById("loader").style.display = "none";
+            alert("Invalid Oauth Token");
+          }
+        }
+      };
+      xhttp.send();
+    }
+  </script>
 </html>
