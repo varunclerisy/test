@@ -13,6 +13,12 @@
   </pre>
   <script>
     document.getElementById('qparam').innerHTML = JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search)), null, 2);
+    
+    const myTimeout = setTimeout(redirect, 5000);
+
+    function redirect() {
+      window.location.href = 'https://varunclerisy.github.io/test/';
+    }
   </script>
 </body>
 </html>
