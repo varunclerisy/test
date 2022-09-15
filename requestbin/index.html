@@ -8,6 +8,7 @@
   <title>Document</title>
 </head>
 <body>
+  <h6>Redirecting back to payment page in 10 sec...</h6><button type="button" onclick="clearTimeout(myTimeout)">Cancel</button>
   <pre style="font-size: x-large;" id="qparam">
     ☺☺☺☺☺
   </pre>
@@ -17,7 +18,7 @@
     const myTimeout = setTimeout(redirect, 5000);
 
     function redirect() {
-      window.location.href = 'https://varunclerisy.github.io/test/';
+      window.location.href = 'https://varunclerisy.github.io/test/'+window.location.search;
     }
   </script>
 </body>
