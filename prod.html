@@ -279,7 +279,7 @@
             name="redirectUrl"
             type="text"
             id="redirectUrl"
-            value="https://varunclerisy.github.io/test/requestbin/"
+            value="https://varunclerisy.github.io/test/test/prod.html"
           />
         </div>
         <div class="form-control">
@@ -347,7 +347,15 @@
         <!-- </form> -->
       </div>
     </div>
-    <h1 id="txn_response">Response</h1>
+    <h2 id="txn_response">Response</h2>
+    <hr>
+    <hr>
+    <h3>Last Transaction Details<a href='https://varunclerisy.github.io/test/prod.html'>Clear</a></h3>
+    <pre id="qparam">
+    </pre>
+    <script>
+      document.getElementById('qparam').innerHTML = JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search)), null, 2);
+    </script>
   </body>
   <script>
     const apiUrlEndPoint = "https://payments.stayntouchpay.com/v1/"; // Production
