@@ -8,14 +8,16 @@
   <title>Document</title>
 </head>
 <body>
-  <h6>Redirecting back to payment page in 10 sec...</h6><button type="button" onclick="clearTimeout(myTimeout)">Cancel</button>
+  <div id="removeit">
+  <h3>Redirecting back to payment page in 10 sec...</h3><button type="button" onclick="clearTimeout(myTimeout);document.getElementById('removeit').remove();">Cancel</button>
+  </div>
   <pre style="font-size: x-large;" id="qparam">
     ☺☺☺☺☺
   </pre>
   <script>
     document.getElementById('qparam').innerHTML = JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search)), null, 2);
     
-    const myTimeout = setTimeout(redirect, 5000);
+    const myTimeout = setTimeout(redirect, 10000);
 
     function redirect() {
       window.location.href = 'https://varunclerisy.github.io/test/'+window.location.search;
