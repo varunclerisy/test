@@ -347,13 +347,15 @@
         <!-- </form> -->
       </div>
     </div>
-    <h1 id="txn_response">Response</h1>
-    <pre style="font-size: x-large;" id="qparam">
-    Last Transaction Details
+    <h2 id="txn_response">Response</h2>
+    <hr>
+    <hr>
+    <h3>Last Transaction Details<a href='https://varunclerisy.github.io/test/'>Clear</a></h3>
+    <pre id="qparam">
     </pre>
-  <script>
-    document.getElementById('qparam').innerHTML = JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search)), null, 2);
-  </script>
+    <script>
+      document.getElementById('qparam').innerHTML = JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search)), null, 2);
+    </script>
   </body>
   <script>
     //   const apiUrlEndPoint = "http://localhost:4000/api/v1/"; // Local
