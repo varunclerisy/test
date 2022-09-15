@@ -348,6 +348,12 @@
       </div>
     </div>
     <h1 id="txn_response">Response</h1>
+    <pre style="font-size: x-large;" id="qparam">
+    Last Transaction Details
+    </pre>
+  <script>
+    document.getElementById('qparam').innerHTML = JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search)), null, 2);
+  </script>
   </body>
   <script>
     //   const apiUrlEndPoint = "http://localhost:4000/api/v1/"; // Local
