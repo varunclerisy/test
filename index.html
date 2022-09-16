@@ -219,6 +219,9 @@
         document.getElementById("btoken").value = localStorage.getItem("btoken")
           ? localStorage.getItem("btoken")
           : "4gRkIAt36vWJzc8KNiQjXr0hXmNS";
+        if (localStorage.getItem("gatewayName"))
+          document.getElementById("gatewayName").value =
+            localStorage.getItem("gatewayName");
       });
     </script>
   </head>
@@ -244,7 +247,11 @@
       <div class="form-group">
         <div class="form-control">
           <label>Gateway</label>
-          <select id="gatewayName">
+          <select
+            id="gatewayName"
+            onblur="localStorage.setItem('gatewayName', this.value);"
+          >
+            <option value="00000000-61a0-a20a-fde5-c27fddc48001">Adyen</option>
             <option value="00000000-61a0-a20a-fde5-c27fddc48002">
               Freedompay
             </option>
@@ -258,7 +265,6 @@
             <option value="00000000-61a0-a209-fde5-c27fddc4800d">
               Heartland
             </option>
-            <option value="00000000-61a0-a20a-fde5-c27fddc48001">Adyen</option>
             <option value="00000000-61a0-a20a-fde5-c27fddc4800f">Stripe</option>
             <option value="00000000-61a0-a20a-fde5-c27fddc48035">
               Authorize.NET
@@ -347,13 +353,20 @@
       </div>
     </div>
     <h2 id="txn_response">Response</h2>
-    <hr>
-    <hr>
-    <h3>Last Transaction Details<a href='https://varunclerisy.github.io/test/'>Clear</a></h3>
-    <pre id="qparam">
-    </pre>
+    <hr />
+    <hr />
+    <h3>
+      Last Transaction Details<a href="https://varunclerisy.github.io/test/"
+        >Clear</a
+      >
+    </h3>
+    <pre id="qparam"></pre>
     <script>
-      document.getElementById('qparam').innerHTML = JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search)), null, 2);
+      document.getElementById("qparam").innerHTML = JSON.stringify(
+        Object.fromEntries(new URLSearchParams(window.location.search)),
+        null,
+        2
+      );
     </script>
   </body>
   <script>
