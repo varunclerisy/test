@@ -89,17 +89,16 @@
 
       iframe {
         border: none;
-        height: 530px;
+        height: 100%;
         width: 100%;
         border-radius: 4px;
       }
 
       .payment-modal .popup-outer {
         width: 680px;
-        max-width: unset;
         position: absolute;
-        top: 15%;
-        padding: 18px 30px 20px 30px;
+        top: 10%;
+        height: 80vh;
         background: #ffffff;
       }
 
@@ -219,7 +218,10 @@
       window.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("btoken").value = localStorage.getItem("btoken")
           ? localStorage.getItem("btoken")
-          : "4gRkIAt36vWJzc8KNiQjXr0hXmNS";
+          : "eyJraWQiOiJ3VElPRldcL1lDUWxQQzdIQjRrTmdWYzJXV0NxbjJWMkNmTVlna3IyVVVWND0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJkMTJlMmExNi1kZDNhLTQwMWEtYTkzMi05OGNkNThmMGVlYTUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfTUNUc2FsNkNmIiwiY29nbml0bzp1c2VybmFtZSI6ImQxMmUyYTE2LWRkM2EtNDAxYS1hOTMyLTk4Y2Q1OGYwZWVhNSIsIm9yaWdpbl9qdGkiOiI1OGQyMTEyMC1iZGFmLTRjZTUtODliMC0xN2I1NzVmNGMzNWUiLCJhdWQiOiI1OHI4bjFuaTdsbzA4MzBhbDBhYmkwMTM4OSIsImV2ZW50X2lkIjoiY2E3NTZiNGYtZTkxOS00NGE0LWJmOWYtNzI3NTI0NmFmYjliIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2NjUwNjcxNDUsIm5hbWUiOiJzYW0gdmFsZGVzIiwiZXhwIjoxNjY1MTUzNTQ1LCJpYXQiOjE2NjUwNjcxNDUsImp0aSI6IjMwYjc0MjlhLTZiOTAtNGQ2OC04ZTQ2LTYzYjUxZTM4NDMwZCIsImVtYWlsIjoidGVzdEBsb2RnaW5nc3lzdGVtLmNvbSJ9.HbcH_7ljdFuuwYBdbKuMLLYxyGTST-sOclhQhpAJg3UG77JMWcti1BojaPuyKKDTv_5R33kLjzCGtYlvrNf5X4HIiXufHjtkvPLAHLa9wYlaNU2iyGf07SKV-xutcUGjEqCcdd6KsoCmqk52FUrkob8ycBHioz2S9YQmo3IhaDbgpm9To8aZQogivoE8zlewTFR-_8bhVKFUiqMqGwxb6UwcEYWF3nsblyE-xzVt-a_T0Ci4-1vmRaam_0ekuM0Ztey00Mz9GSRM4vbIsEoNm_foqKE4FVAsF-tVTVb86-v0ICu_TF41F2x9e0kGExkCvZm_eoXOT4R1XW3zmwpECQ";
+        if (localStorage.getItem("gatewayName"))
+          document.getElementById("gatewayName").value =
+            localStorage.getItem("gatewayName");
       });
     </script>
   </head>
@@ -245,15 +247,18 @@
       <div class="form-group">
         <div class="form-control">
           <label>Gateway</label>
-          <select id="gatewayName">
+          <select
+            id="gatewayName"
+            onblur="localStorage.setItem('gatewayName', this.value);"
+          >
             <option value="00000000-61a0-a207-fde5-c27fddc4800a">Shift4</option>
           </select>
         </div>
         <div class="form-control">
           <label>Consumer Authentication</label>
           <select id="consumerAuthentication" onchange="">
-            <option value="true">Yes</option>
             <option value="false">No</option>
+            <option value="true">Yes</option>
           </select>
         </div>
         <div class="form-control">
@@ -262,7 +267,7 @@
             name="redirectUrl"
             type="text"
             id="redirectUrl"
-            value="https://varunclerisy.github.io/test/requestbin/"
+            value="https://varunclerisy.github.io/test/"
           />
         </div>
         <div class="form-control">
@@ -330,7 +335,22 @@
         <!-- </form> -->
       </div>
     </div>
-    <h1 id="txn_response">Response</h1>
+    <h2 id="txn_response">Response</h2>
+    <hr />
+    <hr />
+    <h3>
+      Last Transaction Details<a href="https://varunclerisy.github.io/test/"
+        >Clear</a
+      >
+    </h3>
+    <pre id="qparam"></pre>
+    <script>
+      document.getElementById("qparam").innerHTML = JSON.stringify(
+        Object.fromEntries(new URLSearchParams(window.location.search)),
+        null,
+        2
+      );
+    </script>
   </body>
   <script>
     //   const apiUrlEndPoint = "http://localhost:4000/api/v1/"; // Local
@@ -444,6 +464,10 @@
       xhttp.setRequestHeader(
         "X-PROPERTY-ID",
         document.getElementById("gatewayName")?.value
+      );
+      xhttp.setRequestHeader(
+        "X-API-KEY",
+        "fFeVS2UG9GaHJnQLlGW8SdRPouSJRqe5a7NRgK04"
       );
       xhttp.setRequestHeader("accept", "application/json");
       xhttp.setRequestHeader("Content-Type", "application/json");
